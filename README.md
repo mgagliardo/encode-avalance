@@ -1,2 +1,3 @@
-# encode-avalance
-Repo for Encode Avalanche Course
+# Encode Avalanche Bootcamp
+
+Repo for Encode Avalanche Bootcamp
