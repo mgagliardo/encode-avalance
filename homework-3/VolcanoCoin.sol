@@ -21,7 +21,7 @@ contract VolcanoCoin {
         return supply;
     }
     
-    function setScore() public onlyOwner {
+    function setSupply() public onlyOwner {
         supply = supply + 1000;
         emit NewSupply(supply);
     }
