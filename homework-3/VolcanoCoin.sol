@@ -3,12 +3,13 @@
 pragma solidity ^0.8.0;
 
 contract VolcanoCoin {
-    uint16 supply = 10000; // 10k supply limit
+    uint16 supply;
     address owner;
     event NewSupply(uint16 _newSupply);
 
     constructor() {
         owner = msg.sender;
+        supply = 10000; // Initial coins available
     }
     
     modifier onlyOwner {
