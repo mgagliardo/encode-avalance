@@ -18,7 +18,7 @@ contract VolcanoToken is Ownable, ERC721 {
         string tokenUri;
     }
     
-    mapping(address => TokenMetadata[]) tokensOwned;
+    mapping(address => TokenMetadata[]) private tokensOwned;
 
     function getTokenId() public view returns(uint256) {
         return tokenId;
@@ -28,46 +28,31 @@ contract VolcanoToken is Ownable, ERC721 {
         return tokensOwned[msg.sender];
     }
 
-    function mintToken(address payable _userAddress) public payable {
+    function mintToken(address payable _userAddress) public {
         string memory tokenURI = string(abi.encodePacked("http://api.gattes.me/token/", Strings.toString(tokenId)));
         TokenMetadata memory newTokenData = TokenMetadata(block.timestamp, tokenId, tokenURI);
         tokensOwned[_userAddress].push(newTokenData);
         _safeMint(_userAddress, tokenId);
         tokenId++;
     }
-
-    function getUserTokenIds(address _userAddress) internal view returns (uint256[] memory) {
-        uint256[] memory tokenIds;
-        TokenMetadata[] memory tokensMetadata = tokensOwned[_userAddress];
-
-        for (uint i=0; i < tokensMetadata.length; i++) {
-            tokenIds[i] = tokensMetadata[i].tokenId;
-        }
-
-        return tokenIds;
-    }
     
-    function validateUser(address _userAddress, uint256 _tokenId) internal view returns (bool) {
-        uint256[] memory tokensIds = getUserTokenIds(_userAddress);
-    
-        for (uint i=0; i < tokensIds.length; i++) {
-            if (tokensIds[i] == _tokenId) {
+    function _validateUser(address _userAddress, uint256 _tokenId) private view returns (bool) {
+        for (uint i=0; i < tokensOwned[_userAddress].length; i++) {
+            if (tokensOwned[_userAddress][i].tokenId == _tokenId) {
                 return true;
             }
         }
         return false;
     }
 
-    function burnToken(uint256 _tokenId) public payable {
-        require(validateUser(msg.sender, _tokenId), "User is not the token owner!");
+    function burnToken(uint256 _tokenId) public {
+        require(_validateUser(msg.sender, _tokenId), "User is not the token owner!");
 
-        //_burn(_tokenId);
-
-        //removeToken(_tokenId, msg.sender);
-        
+        _burn(_tokenId);
+        _removeToken(_tokenId, msg.sender);
     }
 
-    function removeToken(uint256 _tokenId, address _userAddress) internal {
+    function _removeToken(uint256 _tokenId, address _userAddress) private {
         TokenMetadata[] memory tokensMetadata = tokensOwned[_userAddress];
 
         for (uint i=0; i < tokensMetadata.length; i++) {
