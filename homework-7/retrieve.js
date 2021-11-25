@@ -3,15 +3,10 @@ const IPFS = require('ipfs');
 const all = require('it-all');
 
 (async () => {
-    // Initialise IPFS node 
     const node = await IPFS.create();
 
-    // Store CID in a variable 
-    const cid = 'Qmemu9xia8YGv6gV3LCQcs7FxPM5EDqRYfJd3sF7kBUJ9o';
-
-    // Retrieve data from CID 
+    // FOO BAR
+    const cid = 'QmT9FQ6spMuq2CKTnHs6271nB8Tms1MF6vggAA15W4Vwg2';
     const data = Buffer.concat(await all(node.cat(cid)));
-
-    // Print data to console 
-    console.log(data.toString());
+    console.log(`\nData stored is: ${data.toString()}`);
 })();
