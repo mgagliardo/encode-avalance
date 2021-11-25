@@ -1,4 +1,4 @@
-# Homework 2
+# Homework #2
 
 1. Using the blockchain explorer, have a look at the following transactions, what do they do ?
 * `0xb9316bbbae1cd21cd824de8651c72582261230724b1957abdeb466aa96a359c9:` Burning tokens probably. Lots of tokens transferred from [The DAO ethereum address](https://etherscan.io/token/0xbb9bc244d798123fde783fcc1c72d3bb8c189413?a=0xe306aac52823ba1d3938608381a2444d9d641cc1) to blackhole (non existent address).

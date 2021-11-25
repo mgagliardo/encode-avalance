@@ -1,4 +1,4 @@
-# Homework 04-11-2021
+# Homework #1
 
 Imagine you are designing a new blockchain system 
 
