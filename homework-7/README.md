@@ -43,11 +43,11 @@ Data stored is: FOO BAR
 
 3. Create a front-end application to programmatically interact with storage provider.
 
-There is a folder in this directory called `ipfs-project` which is a simple website that uploads and shows the image after successful upload.
+There is a folder in this directory called `ipfs-proj` which is a simple website that uploads and shows the image after successful upload.
 
 ![IPFS Project](./screenshot.png "App Screenshot")
 
-To run it, just enter on the `ipfs-project` directory and run:
+To run it, just enter on the `ipfs-proj` directory and run:
 
 ```
 $ npm install
