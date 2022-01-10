@@ -6,6 +6,23 @@ import '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol';
 import '@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol';
 import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
 
+enum PaymentType {
+  UNKNOWN,
+  BASICPAYMENT,
+  REFUND,
+  DIVIDEND,
+  GROUPPAYMENT
+}
+
+struct Payment {
+    address recipient;
+    uint256 transferAmount;
+    uint256 paymentId;
+    uint256 timestamp;
+    PaymentType paymentType;
+    string comment;
+}
+
 contract VolcanoCoin is ERC20Upgradeable, UUPSUpgradeable, OwnableUpgradeable {
 
     address private adminAddress;
@@ -35,17 +52,6 @@ contract VolcanoCoin is ERC20Upgradeable, UUPSUpgradeable, OwnableUpgradeable {
     
     function mintTokensToOwner() public onlyOwner {
         _mint(msg.sender, 1000);
-    }
-
-    enum PaymentType { UNKNOWN, BASICPAYMENT, REFUND, DIVIDEND, GROUPPAYMENT }
-
-    struct Payment {
-        address recipient;
-        uint256 transferAmount;
-        uint256 paymentId;
-        uint256 timestamp;
-        PaymentType paymentType;
-        string comment;
     }
 
     event PaymentRecord(uint256 _amount, address _recipient);
