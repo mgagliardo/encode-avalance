@@ -14,8 +14,6 @@
 8. Rerun the unit tests, and check that the version number has increased.
 9. Write a unit test to test the upgrade process.
 
-
-
 --------------------------------
 
 # Setup
