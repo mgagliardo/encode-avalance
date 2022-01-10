@@ -172,6 +172,4 @@ describe("Volcano Coin", () => {
     console.log(await volcanoContractV2.version());
     expect(await volcanoContractV2.version()).to.equal(2);
   });
-
-  
 });

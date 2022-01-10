@@ -87,8 +87,6 @@ contract VolcanoCoin is ERC20Upgradeable, UUPSUpgradeable, OwnableUpgradeable {
         return payments[_user];
     }
 
-
-
     function adminUpdatePayment(address _userAddress, uint256 _paymentId, PaymentType _paymentType, string memory _comment) public returns (bool) {
         require(msg.sender == adminAddress, "Only admin addres can execute this function");
         privateUpdatePayment(_userAddress, _paymentId, _paymentType, _comment);

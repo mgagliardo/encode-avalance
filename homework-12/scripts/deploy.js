@@ -37,8 +37,6 @@ async function deployContract() {
   console.log("Upgraded contract address:", upgraded.address);
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
 deployContract()
   .then(() => process.exit(0))
   .catch((error) => {
